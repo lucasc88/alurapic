@@ -5,10 +5,15 @@ import { PhotoFormComponent } from './photos/photo-form/photo-form.component';
 import { PhotoListComponent } from './photos/photo-list/photo-list.component';
 
 const routes: Routes = [
-  {//when routes uses parameter in the URL, ActivatedRoute is used in the component
-    path: ':userName', component: PhotoListComponent
+  {
+    path: '',
+    pathMatch: 'full',
+    redirectTo: 'p'
   },
-  { 
+  {//when routes uses parameter in the URL, ActivatedRoute is used in the component
+    path: 'user/:userName', component: PhotoListComponent
+  },
+  {
     path: 'p', component: PhotoFormComponent
   },
   {
