@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Photo } from '../photo/photo';
-import { PhotoService } from '../photo/photo.service';
 
 @Component({
   selector: 'app-photo-list',
@@ -13,13 +12,12 @@ export class PhotoListComponent implements OnInit {
   photos: Photo[] = [];
   filter: string = '';
 
-  constructor(private photoService: PhotoService, private activatedRoute: ActivatedRoute) { }
+  constructor(private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
-    const name = this.activatedRoute.snapshot.params.userName;
-    this.photoService
-      .listFromUser(name)
-      .subscribe(photos => this.photos = photos);
+    //the resolver is used here to load photos firstly, before the component is rendered.
+    //data['photosResolver'] is the property defined in the AppRouting.module.ts.
+    this.photos = this.activatedRoute.snapshot.data['photosResolver'];
   }
 
 }
