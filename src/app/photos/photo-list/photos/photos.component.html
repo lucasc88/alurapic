@@ -1,3 +1,8 @@
+<!--If there is no photo in the, this message appears-->
+<p class="text-center text-muted" *ngIf="!photos.length">
+  Sorry, no photos
+</p>
+
 <ol class="list-unstyled">
 
   <!--Each row will have 3 photos from array of arrays [[1,2,3],[4,5,6],[7,8]]-->
