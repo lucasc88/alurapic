@@ -33,9 +33,9 @@ export class PhotoListComponent implements OnInit, OnDestroy {
 
     this.userName = this.activatedRoute.snapshot.params.userName;
 
-    //Using debounceTime, it will wait 300 milliseconds to get what the user types
+    //Using debounceTime, it will wait 400 milliseconds to get what the user types
     this.debounce
-      .pipe(debounceTime(300))
+      .pipe(debounceTime(400))
       .subscribe(filter => {
         this.filter = filter;
       });
