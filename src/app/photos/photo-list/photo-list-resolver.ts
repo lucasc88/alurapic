@@ -15,6 +15,6 @@ export class PhotoListResolver implements Resolve<Observable<Photo[]>> {
     //route to get the variable name in the URL
     resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Photo[]> {
         const userName = route.params.userName;
-        return this.service.listFromUser(userName);
+        return this.service.listFromUserPaginated(userName, 1);
     }
 }
