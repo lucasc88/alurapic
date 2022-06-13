@@ -1,7 +1,5 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Subject } from 'rxjs';
-import { debounceTime } from 'rxjs/operators';
 
 import { Photo } from '../photo/photo';
 import { PhotoService } from '../photo/photo.service';
@@ -11,11 +9,10 @@ import { PhotoService } from '../photo/photo.service';
   templateUrl: './photo-list.component.html',
   styleUrls: ['./photo-list.component.css']
 })
-export class PhotoListComponent implements OnInit, OnDestroy {
+export class PhotoListComponent implements OnInit {
 
   photos: Photo[] = [];
   filter: string = '';
-  debounce: Subject<string> = new Subject<string>();//Subject is a kind of Observable that remains alive
 
   hasMore: boolean = true;
   currentPage: number = 1;
@@ -32,19 +29,6 @@ export class PhotoListComponent implements OnInit, OnDestroy {
     this.photos = this.activatedRoute.snapshot.data['photosResolver'];
 
     this.userName = this.activatedRoute.snapshot.params.userName;
-
-    //Using debounceTime, it will wait 400 milliseconds to get what the user types
-    this.debounce
-      .pipe(debounceTime(400))
-      .subscribe(filter => {
-        this.filter = filter;
-      });
-  }
-
-
-  //To kill the debounce to free up memory avoind memory leaking
-  ngOnDestroy(): void {
-    this.debounce.unsubscribe();
   }
 
   load() {
