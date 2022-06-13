@@ -6,7 +6,7 @@
 <ol class="list-unstyled">
 
   <!--Each row will have 3 photos from array of arrays [[1,2,3],[4,5,6],[7,8]]-->
-  <li *ngFor="let cols of rows" class="row">
+  <li *ngFor="let cols of rows" class="row no-gutters">
 
     <div *ngFor="let photo of cols" class="col-4">
       <app-photo [url]="photo.url" [description]="photo.description">
