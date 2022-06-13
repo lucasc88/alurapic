@@ -1,4 +1,6 @@
-<app-search></app-search>
+<!--Custom Event to get what the user type in app-search component and send it to photo-list component -->
+<app-search (onTyping)="filter = $event">
+</app-search>
 
 <app-photos [photos]="photos | filterByDescription: filter"></app-photos>
 
