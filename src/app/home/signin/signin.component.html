@@ -2,8 +2,8 @@
 
 <form [formGroup]="loginForm" (submit)="login()" class="form mt-4">
 
-  <div class="form-group">
-    <input formControlName="userName" class="form-control" placeholder="user name" autofocus>
+  <div class="form-group"><!--#userNameInput is declared to be used by @ViewChild-->
+    <input formControlName="userName" #userNameInput class="form-control" placeholder="user name" autofocus>
 
     <!--errors? is to check for errors-->
     <app-vmessage *ngIf="loginForm.get('userName').errors?.required" text="User name is required!"></app-vmessage>
