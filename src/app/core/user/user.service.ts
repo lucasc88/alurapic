@@ -14,6 +14,8 @@ export class UserService {
   //but the Subject<User> had already emitted the value.
   private userBehaviorSubject = new BehaviorSubject<User>(null);
 
+  userName: string;
+
   constructor(private tokenService: TokenService) {
     //if the application is closed, the user data won't be available.
     //to avoid this, when user access application again, check for token.
@@ -35,11 +37,20 @@ export class UserService {
   private decodeAndNotify() {
     const token = this.tokenService.getToken();
     const user = jwt_decode(token) as User;//token is decoded
+    this.userName = user.name;//add name to be used in auth.guard.ts
     this.userBehaviorSubject.next(user);//emmits the user
   }
 
   logout() {
     this.tokenService.removeToken();
     this.userBehaviorSubject.next(null);
+  }
+
+  isLogged() {
+    return this.tokenService.hasToken();
+  }
+
+  getUserName() {
+    return this.userName;
   }
 }
