@@ -4,8 +4,9 @@
 
         <!--pipe async gets the result of the Observable and put it here in the template to be manipulable-->
         <div *ngIf="(user$ | async) as user; else login">
-            <i class="fa fa-user-circle"></i>
+            <i class="fa fa-user-circle mr-1"></i>
             <a class="ml-2">{{ user?.name }}</a>
+            <a (click)="logout()" class="ml-2">(Logout)</a>
         </div>
 
         <ng-template #login>
