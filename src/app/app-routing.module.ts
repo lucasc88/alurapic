@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './core/auth/auth.guard';
 import { NotFoundComponent } from './errors/not-found/not-found.component';
 import { SigninComponent } from './home/signin/signin.component';
+import { SignupComponent } from './home/signup/signup.component';
 import { PhotoFormComponent } from './photos/photo-form/photo-form.component';
 import { PhotoListResolver } from './photos/photo-list/photo-list-resolver';
 import { PhotoListComponent } from './photos/photo-list/photo-list.component';
@@ -12,6 +13,9 @@ const routes: Routes = [
     path: '',
     component: SigninComponent,
     canActivate: [AuthGuard]
+  },
+  {
+    path: 'signup', component: SignupComponent
   },
   {//when routes uses parameter in the URL, ActivatedRoute is used in the component
     path: 'user/:userName', component: PhotoListComponent,
