@@ -22,6 +22,8 @@
     <app-vmessage *ngIf="signupForm.get('userName').errors?.minlength" text="Min length is 2"></app-vmessage>
     <app-vmessage *ngIf="signupForm.get('userName').errors?.maxlength" text="Max length is 30"></app-vmessage>
     <app-vmessage *ngIf="signupForm.get('userName').errors?.lowerCase" text="Must be lower case"></app-vmessage>
+    <app-vmessage text="Username already taken" *ngIf="signupForm.get('userName').errors?.userNameTaken"></app-vmessage>
+    <small *ngIf="signupForm.get('userName').valid" class="text-success">User available</small>
   </div>
 
   <div class="form-group">
@@ -31,7 +33,8 @@
     <app-vmessage *ngIf="signupForm.get('password').errors?.maxlength" text="Max length is 14"></app-vmessage>
   </div>
 
-  <button class="btn btn-primary btn-block">Register</button>
+  <!--while a assynchronous validation is running, the button is disable as well-->
+  <button [disabled]="signupForm.invalid || signupForm.pending" class="btn btn-primary btn-block">Register</button>
 
   <p>Already a user?<a [routerLink]="['']">Sign In!</a></p>
 </form>
