@@ -8,8 +8,7 @@ import { UserNotTakenValidatorService } from './user-not-taken.validator.service
 
 @Component({
   //selector: 'app-signup', it will have a page scope, so is not necessary 
-  templateUrl: './signup.component.html',
-  styleUrls: ['./signup.component.css']
+  templateUrl: './signup.component.html'
 })
 export class SignupComponent implements OnInit {
 
