@@ -3,7 +3,7 @@
 <form [formGroup]="signupForm" class="form mt-4" (submit)="signup()">
 
   <div class="form-group">
-    <input formControlName="email" placeholder="email" class="form-control" autofocus>
+    <input #inputEmail formControlName="email" placeholder="email" class="form-control" autofocus>
     <!--errors? is to check for errors-->
     <app-vmessage *ngIf="signupForm.get('email').errors?.required" text="Email is required!"></app-vmessage>
     <app-vmessage *ngIf="signupForm.get('email').errors?.email" text="Email is invalid!"></app-vmessage>

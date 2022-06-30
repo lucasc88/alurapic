@@ -29,6 +29,10 @@ export class SigninComponent implements OnInit {
       userName: ['', Validators.required],//first position is the value, second is the validators
       password: ['', Validators.required]
     });
+    //when this component is initialized, the userName input gains focus
+    if (this.platformDetectorService.isPlatformBrowser()) {
+      this.userNameInput.nativeElement.focus();
+    }
   }
 
   login() {
@@ -43,10 +47,10 @@ export class SigninComponent implements OnInit {
           alert('Invalid user credentials');
           this.loginForm.reset();
 
-          if(this.platformDetectorService.isPlatformBrowser()){
+          if (this.platformDetectorService.isPlatformBrowser()) {
             this.userNameInput.nativeElement.focus();
           }
-          
+
         });
   }
 }
