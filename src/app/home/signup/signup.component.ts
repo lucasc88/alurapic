@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { NewUser } from './new-user';
+import { SignUpService } from './signup.service';
 import { UserNotTakenValidatorService } from './user-not-taken.validator.service';
 
 @Component({
@@ -13,7 +16,10 @@ export class SignupComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private userNotTakenValidatorService: UserNotTakenValidatorService) { }
+    private userNotTakenValidatorService: UserNotTakenValidatorService,
+    private signupService: SignUpService,
+    private router: Router
+  ) { }
 
   ngOnInit() {
     this.signupForm = this.formBuilder.group({
@@ -29,4 +35,13 @@ export class SignupComponent implements OnInit {
     });
   }
 
+  signup() {
+    //getRawValue will take all the form fields and convert to NewUser
+    const newUser = this.signupForm.getRawValue() as NewUser;
+    this.signupService.signup(newUser)
+      .subscribe(() => 
+        this.router.navigate(['']),
+        error => console.log(error)
+      );
+  }
 }

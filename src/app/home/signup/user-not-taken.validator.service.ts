@@ -22,7 +22,7 @@ export class UserNotTakenValidatorService {
                 .pipe(switchMap(userName => //switchMap returns the other Observable(checkUserNameTaken)
                     this.signUpService.checkUserNameTaken(userName)
                 ))
-                .pipe(map(isTaken => isTaken ? { userNameTaken: true } : null))//access the value returned by request
+                .pipe(map(isTaken => isTaken ? { userNameTaken: true } : null))//access the value returned by request (true or false)
                 .pipe(first());//first() gets the first emmited value
         }
     }
