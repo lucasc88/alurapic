@@ -7,9 +7,7 @@ import { SignUpService } from "./signup.service";
 //It's an asynchronous validator to check if userName already exist.
 //It's a service and validator at the same time.
 //It's returns a function validation, an Observable of null or a JS object
-@Injectable({
-    providedIn: 'root'
-})
+@Injectable()
 export class UserNotTakenValidatorService {
 
     constructor(private signUpService: SignUpService) { }

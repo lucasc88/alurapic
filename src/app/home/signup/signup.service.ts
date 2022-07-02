@@ -5,9 +5,7 @@ import { NewUser } from "./new-user";
 const API_URL = 'http://localhost:3000';
 
 //Service responsable to request the username
-@Injectable({
-    providedIn: 'root'
-})
+@Injectable()
 export class SignUpService {
 
     constructor(private http: HttpClient) { }

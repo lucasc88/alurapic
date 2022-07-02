@@ -8,6 +8,7 @@
 # dependencies
 /node_modules
 /api/node_modules
+api/data.db
 
 # IDEs and editors
 /.idea
