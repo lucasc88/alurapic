@@ -23,7 +23,7 @@ const routes: Routes = [
     }
   },
   {
-    path: 'p',
+    path: 'p/add',
     component: PhotoFormComponent
   },
   {

@@ -4,17 +4,20 @@ import { NgModule } from "@angular/core";
 import { RouterModule } from "@angular/router";
 import { RequestInterceptor } from "./auth/request.interceptor";
 import { HeaderComponent } from "./header/header.component";
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
     declarations: [
-        HeaderComponent
+        HeaderComponent,
+        FooterComponent
     ],
     imports: [
         CommonModule,
         RouterModule
     ],
     exports: [
-        HeaderComponent
+        HeaderComponent,
+        FooterComponent
     ],
     providers: [//declaration to use the interceptor
         {
