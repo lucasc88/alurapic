@@ -1,8 +1,14 @@
 <div class="container">
-  <form [formGroup]="photoForm" class="row">
+  <form [formGroup]="photoForm" (submit)="upload()" class="row">
 
     <div class="col-md-6 text-center">
-      <input formControlName="file" type="file" accept="image/*">
+      <!--(change) event to assign the file type input to the
+        attribute file in the component getting the unique file-->
+      <input 
+        formControlName="file"
+        (change)="file = $event.target.files[0]"
+        type="file"
+        accept="image/*">
       <app-vmessage 
         text="Please, select a photo" 
         *ngIf="photoForm.get('file').errors?.required">
