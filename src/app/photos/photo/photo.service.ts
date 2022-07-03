@@ -29,7 +29,7 @@ export class PhotoService {
     upload(description: string, allowComments: boolean, file: File) {
         const formData = new FormData();//FormData because this form is using an upload
         formData.append('description', description);
-        formData.append('allowComments', allowComments ? 'true' : 'false');
+        formData.append('allowComments', allowComments ? 'true' : 'false');//only string is accept, no booleans
         formData.append('imageFile', file);
         return this.http.post(API + '/photos/upload', formData);
     }

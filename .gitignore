@@ -8,7 +8,7 @@
 # dependencies
 /node_modules
 /api/node_modules
-api/data.db
+/api/data.db
 
 # IDEs and editors
 /.idea
@@ -39,3 +39,4 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
+api/data.db
