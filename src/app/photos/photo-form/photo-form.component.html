@@ -2,17 +2,31 @@
   <form [formGroup]="photoForm" (submit)="upload()" class="row">
 
     <div class="col-md-6 text-center">
-      <!--(change) event to assign the file type input to the
-        attribute file in the component getting the unique file-->
-      <input 
-        formControlName="file"
-        (change)="file = $event.target.files[0]"
-        type="file"
-        accept="image/*">
-      <app-vmessage 
-        text="Please, select a photo" 
-        *ngIf="photoForm.get('file').errors?.required">
-      </app-vmessage>
+
+      <!--After a photo is selected, #previewImage will be shown-->
+      <div class="form-group" *ngIf="!preview; else previewImage">
+
+        <button type="button" (click)="fileInput.click()" class="btn btn-primary">
+          <i class="fa fa-image fa-4x align-middle"></i>
+        </button>
+
+        <!--(change) event to get the file and convert it into Base64 to show-->
+        <input #fileInput hidden formControlName="file"
+          (change)="handleFile($event.target.files[0])"
+          type="file" accept="image/*">
+        <app-vmessage 
+          text="Please, select a photo" 
+          *ngIf="photoForm.get('file').errors?.required">
+        </app-vmessage>
+        
+      </div>
+
+      <ng-template #previewImage>
+        <div class="text-center">
+          <app-photo [url]="preview" title="Preview"></app-photo>
+        </div>
+      </ng-template>
+
     </div>
 
     <div class="col-md-6">
