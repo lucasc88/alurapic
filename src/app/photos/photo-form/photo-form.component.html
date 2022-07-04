@@ -6,7 +6,8 @@
       <!--After a photo is selected, #previewImage will be shown-->
       <div class="form-group" *ngIf="!preview; else previewImage">
 
-        <button type="button" (click)="fileInput.click()" class="btn btn-primary">
+        <!--immediateClick is a custom directive to open immediately the upload image option-->
+        <button immediateClick type="button" (click)="fileInput.click()" class="btn btn-primary">
           <i class="fa fa-image fa-4x align-middle"></i>
         </button>
 
@@ -18,7 +19,7 @@
           text="Please, select a photo" 
           *ngIf="photoForm.get('file').errors?.required">
         </app-vmessage>
-        
+
       </div>
 
       <ng-template #previewImage>
