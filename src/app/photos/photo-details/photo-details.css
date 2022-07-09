@@ -1,0 +1,5 @@
+/*Just to break a long word in the description*/
+.break-word {
+    word-break: break-all;
+}
+
