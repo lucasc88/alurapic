@@ -3,6 +3,7 @@ import { Injectable } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 
 import { Photo } from "./photo";
+import { PhotoComment } from "./photo-comment";
 
 const API = 'http://localhost:3000';
 
@@ -34,7 +35,11 @@ export class PhotoService {
         return this.http.post(API + '/photos/upload', formData);
     }
 
-    findById(id: string) {
+    findById(id: number) {
         return this.http.get<Photo>(API + '/photos/' + id);
+    }
+
+    getComments(id: number) {
+        return this.http.get<PhotoComment[]>(API + '/photos/' + id + '/comments');
     }
 }
