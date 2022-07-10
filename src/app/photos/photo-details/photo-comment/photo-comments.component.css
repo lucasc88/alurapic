@@ -1,0 +1,5 @@
+/*vh is the visible area and the overflow-y works only with it*/
+.comment-list {
+    height: 50vh;
+    overflow-y: auto;
+}
