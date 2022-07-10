@@ -42,4 +42,10 @@ export class PhotoService {
     getComments(id: number) {
         return this.http.get<PhotoComment[]>(API + '/photos/' + id + '/comments');
     }
+
+    addComment(id: number, commentText: string) {
+        return this.http
+            .post(API + '/photos/' + id + '/comments',
+                { commentText: commentText });//attribute and its value
+    }
 }
