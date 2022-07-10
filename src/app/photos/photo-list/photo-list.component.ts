@@ -24,11 +24,18 @@ export class PhotoListComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    //the resolver is used here to load photos firstly, before the component is rendered.
-    //data['photosResolver'] is the property defined in the AppRouting.module.ts.
-    this.photos = this.activatedRoute.snapshot.data['photosResolver'];
+    //when the same URL is resquested, the line bellow will not work because the component
+    //was already loaded. To solve this problem, just run a subscribe in the URL to listen
+    //the parameters changes in the URL.
+    //this.userName = this.activatedRoute.snapshot.params.userName;
+    this.activatedRoute.params.subscribe(params => {
+      this.userName = params.userName;
 
-    this.userName = this.activatedRoute.snapshot.params.userName;
+      //the resolver is used here to load photos firstly, before the component is rendered.
+      //data['photosResolver'] is the property defined in the AppRouting.module.ts.
+      this.photos = this.activatedRoute.snapshot.data['photosResolver'];
+    }
+    );
   }
 
   load() {
