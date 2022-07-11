@@ -9,7 +9,7 @@ export class AlertService {
 
     //attribute to be used by who wants to issue and
     //who wants to get an alert
-    alertSubject: Subject<Alert>;
+    alertSubject: Subject<Alert> = new Subject<Alert>();
 
     //who wants emmit an alert, will request alert()
     private alert(alertType: AlertType, message: string) {

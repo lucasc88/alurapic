@@ -4,12 +4,10 @@ import { AlertComponent } from './alert/alert.component';
 
 @NgModule({
     declarations: [
-        VMessageComponent,
-        AlertComponent
+        VMessageComponent
     ],
     exports: [
-        VMessageComponent,
-        AlertComponent
+        VMessageComponent
     ]
 })
 export class VMessageModule { }
