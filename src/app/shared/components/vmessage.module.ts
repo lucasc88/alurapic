@@ -1,12 +1,15 @@
 import { NgModule } from "@angular/core";
 import { VMessageComponent } from "./vmessage.component";
+import { AlertComponent } from './alert/alert.component';
 
 @NgModule({
     declarations: [
-        VMessageComponent
+        VMessageComponent,
+        AlertComponent
     ],
     exports: [
-        VMessageComponent
+        VMessageComponent,
+        AlertComponent
     ]
 })
 export class VMessageModule { }
