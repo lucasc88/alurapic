@@ -29,6 +29,11 @@ export class PhotoDetailsComponent implements OnInit {
         this.photoId = this.activatedRoute.snapshot.params.photoId;
         this.photo$ = this.photoService.findById(this.photoId);
 
+        //In case the user click to back the page, in the browser, after delete a photo,
+        //it will redirect to not-found page because that photoId was deleted
+        this.photo$.subscribe(() => {}, err => {
+            this.router.navigate(['/not-found']);
+        });
     }
 
     remove(id: string){
