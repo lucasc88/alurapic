@@ -38,7 +38,7 @@ const routes: Routes = [
     component: NotFoundComponent
   },
   {
-    path: '**',
+    path: '**',//if the user write some non-existent page
     redirectTo: 'not-found'
   }
 ];
