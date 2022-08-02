@@ -31,20 +31,33 @@ export class PhotoDetailsComponent implements OnInit {
 
         //In case the user click to back the page, in the browser, after delete a photo,
         //it will redirect to not-found page because that photoId was deleted
-        this.photo$.subscribe(() => {}, err => {
+        this.photo$.subscribe(() => { }, err => {
             this.router.navigate(['/not-found']);
         });
     }
 
-    remove(id: string){
+    remove(id: string) {
         this.photoService.removePhoto(this.photoId)
             .subscribe(() => {
                 this.alertService.success("Photo removed", true);
                 this.router.navigate(['/user', this.userService.getUserName()]);
             },
-            err => {
-                console.log(err);
-                this.alertService.warning("Could not delete the photo", true);
-            });
+                err => {
+                    console.log(err);
+                    this.alertService.warning("Could not delete the photo", true);
+                });
+    }
+
+    like(photo: Photo) {
+        this.photoService.like(photo.id)
+            .subscribe(liked => {//it returns an Observable of true or false
+                if (liked) {
+                    this.photo$ = this.photoService.findById(photo.id);
+                } else {
+                    console.log('this user already liked the photo with id: ' + photo.id);
+                }
+            }
+            //, err => alert(err) this line would return any other error that's not 304
+            );
     }
 }

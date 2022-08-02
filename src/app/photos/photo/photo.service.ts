@@ -1,6 +1,8 @@
 import { HttpClient, HttpParams } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
+import { of, throwError } from "rxjs";
+import { catchError, map } from "rxjs/operators";
 
 import { Photo } from "./photo";
 import { PhotoComment } from "./photo-comment";
@@ -49,8 +51,27 @@ export class PhotoService {
                 { commentText: commentText });//attribute and its value
     }
 
-    removePhoto(id: number){
+    removePhoto(id: number) {
         return this.http
             .delete(API + '/photos/' + id);
+    }
+
+    //This method will return a boolean type of Observable
+    //True is Success
+    //False is Error (304 is an error that means the user already liked that photo)
+    //Any other Error will be throw above
+    like(id: number) {
+        return this.http
+            .post(API + '/photos/' + id + '/like', {},//{} every POST has a body, in this case it's a empty body
+                { observe: 'response' })//observe is to access all the content in the response(status, header, etc)
+
+            .pipe(map(res => true))//if the return is success, returns true and nothing happens
+
+            .pipe(catchError(err => {//catchError is to do an error handling
+                //if the return is 304, it means the user already liked that photo
+                //in error case, retuns an Oberservable false or throw the error
+                //of() returns an Observable of false
+                return err.status == '304' ? of(false) : throwError(err);
+            }));
     }
 }
