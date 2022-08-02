@@ -1,3 +1,4 @@
+import { HttpEvent, HttpEventType } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -15,6 +16,7 @@ export class PhotoFormComponent implements OnInit {
   photoForm: FormGroup;
   file: File;//useful for uploads
   preview: string;//image preview
+  percentDone = 0;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -37,10 +39,20 @@ export class PhotoFormComponent implements OnInit {
     const allowComments = this.photoForm.get('allowComments').value;
     this.photoService
       .upload(description, allowComments, this.file)
-      .subscribe(() => {
-        this.alertService.success('Upload completed', true);
-        this.router.navigate(['/user', this.userService.getUserName()])
-      });
+      .subscribe((event: HttpEvent<any>) => {
+
+        if (event.type == HttpEventType.UploadProgress) {//every progress this event will update the percentDone
+          this.percentDone = Math.round(100 * event.loaded / event.total);
+        } else if (event.type == HttpEventType.Response) {//when is done, the message appears and navigate to the user
+          this.alertService.success('Upload completed', true);
+          this.router.navigate(['/user', this.userService.getUserName()])
+        }
+      },
+        err => {//error case
+          console.log(err);
+          this.alertService.danger('Upload Error!', true);
+          this.router.navigate(['/user', this.userService.getUserName()])
+        });
   }
 
   //to covert the image, preview
