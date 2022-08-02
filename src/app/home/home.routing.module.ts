@@ -14,11 +14,17 @@ const routes: Routes = [
         children: [
             {
                 path: '',
-                component: SigninComponent
+                component: SigninComponent,
+                data: {
+                  title: 'SignIn'
+                }
             },
             {
                 path: 'signup',
-                component: SignupComponent
+                component: SignupComponent,
+                data: {
+                  title: 'SignUp'
+                }
             }
         ]
     }
