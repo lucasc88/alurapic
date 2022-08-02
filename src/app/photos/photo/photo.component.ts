@@ -1,6 +1,7 @@
 import { Component, Input } from "@angular/core";
+import { environment } from 'src/environments/environment';
 
-const CLOUD = 'http://localhost:3000/imgs/';
+const API_URL = environment.ApiUrl + '/imgs/';
 
 @Component({
     selector: 'app-photo',
@@ -15,7 +16,7 @@ export class PhotoComponent {
     //set to swicth the photo URL domain
     @Input() set url(url: string) {
         if (!url.startsWith('data')) {
-            this._url = CLOUD + url;
+            this._url = API_URL + url;
         } else {
             this._url = url;
         }

@@ -1,8 +1,9 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { NewUser } from "./new-user";
+import { environment } from 'src/environments/environment';
 
-const API_URL = 'http://localhost:3000';
+const API_URL = environment.ApiUrl;
 
 //Service responsable to request the username
 @Injectable()
