@@ -5,8 +5,7 @@ import { LoadingComponent } from './loading/loading.component';
 
 @NgModule({
     declarations: [
-        VMessageComponent,
-        LoadingComponent
+        VMessageComponent
     ],
     exports: [
         VMessageComponent

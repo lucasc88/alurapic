@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { LoadingType } from './loading-type';
+import { LoadingService } from './loading.service';
 
 @Component({
   selector: 'app-loading',
@@ -7,9 +11,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoadingComponent implements OnInit {
 
-  constructor() { }
+  loading$: Observable<string>;
+
+  constructor(
+    private loadingService: LoadingService
+  ) { }
+
 
   ngOnInit() {
+    this.loading$ = this.loadingService.getLoading()
+      .pipe(map(loadingType => loadingType.valueOf()));//pipe() only to parse the enum in string
   }
 
 }
