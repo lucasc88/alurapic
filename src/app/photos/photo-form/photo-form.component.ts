@@ -43,7 +43,7 @@ export class PhotoFormComponent implements OnInit {
 
         if (event.type == HttpEventType.UploadProgress) {//every progress this event will update the percentDone
           this.percentDone = Math.round(100 * event.loaded / event.total);
-        } else if (event.type == HttpEventType.Response) {//when is done, the message appears and navigate to the user
+        } else if (event.type == HttpEventType.Response) {//when is done, the message appears and it navigates to the user page
           this.alertService.success('Upload completed', true);
           this.router.navigate(['/user', this.userService.getUserName()])
         }
