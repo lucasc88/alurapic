@@ -7,6 +7,7 @@ import { UserService } from "src/app/core/user/user.service";
 })
 export class ShowIfLoggedDirective implements OnInit {
 
+    currentDisplay: string;
 
     constructor(
         private element: ElementRef<any>,//element on which the directive was added
@@ -14,8 +15,20 @@ export class ShowIfLoggedDirective implements OnInit {
         private userService: UserService
     ) { }
 
+    //to hide the side menu, is necessary to get the current menu style and change if necessary.
+    //it's because the header is loaded only once in the application.
+    //This does not affect the others components that use ShowIfLoggedDirective.
     ngOnInit(): void {
-        !this.userService.isLogged()
-            && this.rendered.setElementStyle(this.element.nativeElement, 'display', 'none');
+        //getComputedStyle() gives the current style of the element
+        this.currentDisplay = getComputedStyle(this.element.nativeElement).display;
+
+        this.userService.getUser().subscribe(user => {
+            if(user){//user is logged
+                this.rendered.setElementStyle(this.element.nativeElement, 'display', this.currentDisplay);
+            } else {//user is not logged
+                this.currentDisplay = getComputedStyle(this.element.nativeElement).display;
+                this.rendered.setElementStyle(this.element.nativeElement, 'display', 'none');
+            }
+        });
     }
 }
