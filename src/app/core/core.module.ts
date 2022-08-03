@@ -7,6 +7,8 @@ import { HeaderComponent } from "./header/header.component";
 import { FooterComponent } from './footer/footer.component';
 import { AlertModule } from "../shared/components/alert/alert.module";
 import { LoadingModule } from "../shared/components/loading/loading.module";
+import { MenuModule } from "../shared/components/menu/menu.module";
+import { showIfLoggedModule } from "../shared/components/card/directives/show-if-logged/show-if-logged.module";
 
 @NgModule({
     declarations: [
@@ -17,7 +19,9 @@ import { LoadingModule } from "../shared/components/loading/loading.module";
         CommonModule,
         RouterModule,
         AlertModule,
-        LoadingModule
+        LoadingModule,
+        MenuModule,
+        showIfLoggedModule
     ],
     exports: [
         HeaderComponent,
