@@ -5,6 +5,7 @@ import { PlatformDetectorService } from 'src/app/core/platform-detector/platform
 import { NewUser } from './new-user';
 import { SignUpService } from './signup.service';
 import { UserNotTakenValidatorService } from './user-not-taken.validator.service';
+import { userNamePasswordValidator } from './username-password.validator';
 
 @Component({
   //selector: 'app-signup', it will have a page scope, so is not necessary 
@@ -38,6 +39,9 @@ export class SignupComponent implements OnInit {
         ],
       fullName: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(30)]],
       password: ['', [Validators.required, Validators.minLength(8), Validators.maxLength(14)]],
+    }, {
+      //validation belonging to the form
+      validator: userNamePasswordValidator
     });
 
     //when this component is initialized, the userName input gains focus
