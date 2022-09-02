@@ -47,12 +47,15 @@ export class SignupComponent implements OnInit {
   }
 
   signup() {
-    //getRawValue will take all the form fields and convert to NewUser
-    const newUser = this.signupForm.getRawValue() as NewUser;
-    this.signupService.signup(newUser)
-      .subscribe(() =>
-        this.router.navigate(['']),//navigate to SignIn page
-        error => console.log(error)
-      );
+    //imporvements in the form to hide the error msgs when the form appears
+    if (this.signupForm.valid && !this.signupForm.pending) {
+      //getRawValue will take all the form fields and convert to NewUser
+      const newUser = this.signupForm.getRawValue() as NewUser;
+      this.signupService.signup(newUser)
+        .subscribe(() =>
+          this.router.navigate(['']),//navigate to SignIn page
+          error => console.log(error)
+        );
+    }
   }
 }
