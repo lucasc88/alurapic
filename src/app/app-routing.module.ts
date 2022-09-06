@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { RequiresAuthenticationGuard } from './core/auth/requires-authentication.guard';
+import { GlobalErrorComponent } from './errors/global-error/global-error.component';
 import { NotFoundComponent } from './errors/not-found/not-found.component';
 import { PhotoDetailsComponent } from './photos/photo-details/photo-details.component';
 import { PhotoFormComponent } from './photos/photo-form/photo-form.component';
@@ -47,6 +48,13 @@ const routes: Routes = [
     component: NotFoundComponent,
     data: {
       title: 'Not Found'
+    }
+  },
+  {
+    path: 'error',
+    component: GlobalErrorComponent,
+    data: { 
+      title: 'Error'
     }
   },
   {
